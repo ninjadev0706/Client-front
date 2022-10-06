@@ -19,6 +19,7 @@
     "react-toastify": "^9.0.7",
     "rsuite": "^5.19.0",
     "socket.io-client": "^4.5.1",
+    "validator": "^13.7.0",
     "xterm": "^4.19.0",
     "xterm-addon-fit": "^0.5.0",
     "yup": "^0.32.11"

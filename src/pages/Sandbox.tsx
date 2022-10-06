@@ -5,15 +5,14 @@ import axios from "axios";
 import { API_URL } from "../config";
 
 import Header from "../components/Header";
-
 import Registration from "./Registration";
 import PersonalDetail from "./PersonalDetail";
 import Proposal from "./Proposal";
 import History from "./History";
-// import { valueContainerCSS } from "react-select/dist/declarations/src/components/containers";
 
 const Sandbox = () => {
   const [processstep, setProcessStep] = useState(0);
+  const [componentTarget, setComponentTarget] = useState(0);
 
   const [companyName, setCompanyName] = useState("");
   const [companyNumber, setCompanyNumber] = useState("");
@@ -47,6 +46,7 @@ const Sandbox = () => {
   const [nobusiness, setNoBusiness] = useState(0);
   const [partnersIncome, setPartnersIncome] = useState(0);
   const [personalexpense, setPersonalExpense] = useState(0);
+  const [shareholder, setShareholder] = useState(false);
 
   const AddProcessStep = async () => {
     setProcessStep(processstep + 1);
@@ -107,24 +107,25 @@ const Sandbox = () => {
     nobusiness: nobusiness,
     partnersIncome: partnersIncome,
     personalexpense: personalexpense,
-  };
-
-  const LimitedCompanyName = () => {
-    return <div></div>;
+    // shareholder: shareholder,
   };
 
   return (
     <div>
       <Header />
       <div>
-        <div className="progressStep mb-20 w-full block">
-          <Steps current={processstep + 1} currentStatus="process">
-            <Steps.Item title="Loan amount" />
-            <Steps.Item title="Business details" />
-            <Steps.Item title="Personal details" />
-            <Steps.Item title="Your offers" />
-            <Steps.Item title="Trading history" />
-          </Steps>
+        <div className="flex justify-center">
+          <div className="lg:w-3/12 w-1/12"></div>
+          <div className="progressStep my-10 lg:w-6/12 w-full items-center">
+            <Steps current={processstep} currentStatus="process">
+              {/* <Steps.Item title="Loan amount" /> */}
+              <Steps.Item title="Business details" />
+              <Steps.Item title="Personal details" />
+              <Steps.Item title="Your offers" />
+              <Steps.Item title="Trading history" />
+            </Steps>
+          </div>
+          <div className="lg:w-3/12 w-1/12"></div>
         </div>
 
         <div className={`${processstep == 0 ? "block" : "hidden"}`}>
@@ -155,6 +156,8 @@ const Sandbox = () => {
             onlineRevenue={onlineRevenue}
             setVATregistered={setVATregistered}
             VATregistered={VATregistered}
+            setComponentTarget={setComponentTarget}
+            componentTarget={componentTarget}
           />
         </div>
         <div className={`${processstep == 1 ? "block" : "hidden"}`}>
@@ -199,6 +202,10 @@ const Sandbox = () => {
             partnersIncome={partnersIncome}
             setPersonalExpense={setPersonalExpense}
             personalexpense={personalexpense}
+            setComponentTarget={setComponentTarget}
+            componentTarget={componentTarget}
+            setShareholder={setShareholder}
+            shareholder={shareholder}
           />
         </div>
         <div className={`${processstep == 2 ? "block" : "hidden"}`}>

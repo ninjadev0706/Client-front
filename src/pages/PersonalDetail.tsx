@@ -40,6 +40,8 @@ const PersonalDetail = (props: any) => {
     country,
     setResidential,
     residential,
+    setShareholder,
+    shareholder,
     setMainphone,
     mainphone,
     setAddphone,
@@ -52,6 +54,7 @@ const PersonalDetail = (props: any) => {
     partnersIncome,
     setPersonalExpense,
     personalexpense,
+    componentTarget,
   } = props;
 
   const navigate = useNavigate();
@@ -138,15 +141,16 @@ const PersonalDetail = (props: any) => {
   return (
     <div className="flex justify-center">
       <div className="pt-10 w-[660px] md:w-[811px]">
-          <div
-            onClick={() => BackProcessStep()}
-            className="flex text-sm items-center pl-2 text-[#0c2440] font-medium"
-          >
-            <img src="download.svg" className="h-2 w-2 mr-2" alt="_"></img>Back
-          </div>
-          <div className="text-2xl font-bold text-[#0c2440]">
-            Tell us about yourself
-          </div>
+        <div
+          onClick={() => BackProcessStep()}
+          className="flex text-sm items-center pl-2 text-[#0c2440] font-medium"
+        >
+          <img src="download.svg" className="h-2 w-2 mr-2" alt="_"></img>Back
+        </div>
+        <div className="text-2xl font-bold text-[#0c2440]">
+          Tell us about yourself
+        </div>
+
         <div className="my-5 box shadow-2xl p-[30px] text-[#0c2440] mb-10 bg-white rounded-2xl">
           <div className="rounded-lg bg-white pt-10">
             <div className="grid md:grid-cols-2 gap-5">
@@ -178,12 +182,15 @@ const PersonalDetail = (props: any) => {
                 <p className="font-medium text-[16px] mb-3">Date of birth</p>
                 <div className="flex rounded-lg">
                   <input
+                    type="number"
+                    min={0}
+                    max={31}
                     value={birthdd}
                     onChange={(e) => setBirthdd(e.target.value)}
-                    className="rounded-l-lg block w-4/12 p-2 w-full pl-3 pr-16 text-sm border border-gray-300 focus:outline-none"
+                    className="rounded-l-lg block w-full p-2 pl-3 pr-16 text-sm border border-gray-300 focus:outline-none"
                     placeholder="DD"
                   ></input>
-                  <div className="border w-4/12 border-gray-300">
+                  <div className="border w-full border-gray-300">
                     <Select
                       options={monthOptions}
                       styles={customStyle}
@@ -192,9 +199,12 @@ const PersonalDetail = (props: any) => {
                     />
                   </div>
                   <input
+                    type="number"
+                    min={1900}
+                    max={3000}
                     value={birthyy}
                     onChange={(e) => setBirthyy(e.target.value)}
-                    className="rounded-r-lg block w-4/12 p-2 w-full pl-3 pr-16 text-sm border border-gray-300 focus:outline-none"
+                    className="rounded-r-lg block w-full p-2 pl-3 pr-16 text-sm border border-gray-300 focus:outline-none"
                     placeholder="Last name"
                   ></input>
                 </div>
@@ -339,9 +349,8 @@ const PersonalDetail = (props: any) => {
                   <input
                     value={mainphone}
                     onChange={(e) => setMainphone(e.target.value)}
-                    type="search"
-                    id="search-dropdown"
-                    className="block p-2 w-full pl-3 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                    type="number"
+                    className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
                     placeholder="Search..."
                     required
                   />
@@ -354,6 +363,7 @@ const PersonalDetail = (props: any) => {
                 </div>
                 <div className="relative w-full">
                   <input
+                    type="number"
                     value={addphone}
                     onChange={(e) => setAddphone(e.target.value)}
                     className="rounded-lg block p-2 w-full pl-3 pr-16 text-sm border border-gray-300 focus:outline-none"
@@ -361,7 +371,7 @@ const PersonalDetail = (props: any) => {
                 </div>
               </div>
             </div>
-            <div className="flex items-center my-10">
+            <div className={`flex items-center my-10 `}>
               <p className="text-[16px]">YOUR PERSONAL INCOME AND EXPENSES</p>
               <Tippy interactive content={tooltip.experience}>
                 <svg
@@ -378,7 +388,13 @@ const PersonalDetail = (props: any) => {
                 </svg>
               </Tippy>
             </div>
-            <div className="mb-10">
+            <div
+              className={`${
+                componentTarget == 0 || componentTarget == 3
+                  ? "hidden"
+                  : "block"
+              } mb-10`}
+            >
               <p className="font-medium text-[16px] mb-3">
                 How many dependents do you have?
               </p>
@@ -432,7 +448,13 @@ const PersonalDetail = (props: any) => {
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-5">
-              <div>
+              <div
+                className={`${
+                  componentTarget == 0 || componentTarget == 3
+                    ? "hidden"
+                    : "block"
+                }`}
+              >
                 <p className="font-medium text-[16px] mb-3">
                   Do you have any non-business income?
                 </p>
@@ -462,7 +484,48 @@ const PersonalDetail = (props: any) => {
                   e.g. Part-time job, investments, child support or a pension
                 </p>
               </div>
-              <div>
+
+              <div
+                className={`${
+                  componentTarget !== 0 && componentTarget !== 3
+                    ? "hidden"
+                    : "block"
+                }`}
+              >
+                <p className="font-medium text-[16px] mb-3">
+                  Are you a shareholder of the company?
+                </p>
+                <div className="flex">
+                  <button
+                    onClick={() => setShareholder(true)}
+                    className={`${
+                      shareholder == true
+                        ? "bg-[#0c2440] text-white hover:bg-[#3c5490]"
+                        : "bg-white text-[#0c2440] hover:bg-[#ddd]"
+                    } w-6/12 border rounded-l-lg block p-2 w-full  text-sm border-gray-300`}
+                  >
+                    <i className="fa fa-check"> Yes</i>
+                  </button>
+                  <button
+                    onClick={() => setShareholder(false)}
+                    className={`${
+                      shareholder == false
+                        ? "bg-[#0c2440] text-white hover:bg-[#3c5490]"
+                        : "bg-white text-[#0c2440] hover:bg-[#ddd]"
+                    } w-6/12 border rounded-r-lg block p-2 w-full  text-sm border-gray-300`}
+                  >
+                    <i className="fa fa-times"> No</i>
+                  </button>
+                </div>
+              </div>
+
+              <div
+                className={`${
+                  componentTarget == 0 || componentTarget == 3
+                    ? "hidden"
+                    : "block"
+                }`}
+              >
                 <div className="flex items-center mb-3">
                   <p className="font-medium text-[16px]">
                     Your non-business income (after tax)
@@ -475,11 +538,9 @@ const PersonalDetail = (props: any) => {
                   <input
                     value={nobusiness}
                     onChange={(e) => setNoBusiness(e.target.value)}
-                    type="search"
-                    id="search-dropdown"
                     className="block py-2 w-full pl-8 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
                     disabled={!nonebusinessIncome}
-                    placeholder="0"
+                    pattern="[0-9]"
                     required
                   />
                   <button
@@ -490,79 +551,13 @@ const PersonalDetail = (props: any) => {
                   </button>
                 </div>
               </div>
-              {/* <div>
-                <div className="mb-3">
-                  <p className="font-medium text-[16px]">
-                    Do you share costs with a spouse or partner?
-                    <Tippy interactive content={tooltip.sharecosts}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4 ml-2 inline relative cursor-pointer -top-[1px]"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </Tippy>
-                  </p>
-                </div>
-                <div className="flex">
-                  <button
-                    onClick={() => setCostPartner(1)}
-                    className={`${
-                      costpartner == 1
-                        ? "bg-[#0c2440] text-white hover:bg-[#3c5490]"
-                        : "bg-white text-[#0c2440] hover:bg-[#ddd]"
-                    } w-6/12 border rounded-l-lg block p-2 w-full  text-sm border-gray-300`}
-                  >
-                    <i className="fa fa-check"> Yes</i>
-                  </button>
-                  <button
-                    onClick={() => setCostPartner(0)}
-                    className={`${
-                      costpartner == 0
-                        ? "bg-[#0c2440] text-white hover:bg-[#3c5490]"
-                        : "bg-white text-[#0c2440] hover:bg-[#ddd]"
-                    } w-6/12 border rounded-r-lg block p-2 w-full  text-sm border-gray-300`}
-                  >
-                    <i className="fa fa-times"> No</i>
-                  </button>
-                </div>
-                <p>
-                  e.g. Part-time job, investments, child support or a pension
-                </p>
-              </div>
-              <div>
-                <p className="font-medium text-[16px] mb-3">
-                  Your spouse or partner's income (after tax)
-                </p>
-                <div className="relative w-full mb-2">
-                  <button className="absolute top-0 left-0 py-2 px-2 text-sm font-medium text-black rounded-l-lg border border-gray-300 focus:outline-none">
-                    £
-                  </button>
-                  <input
-                    value={partnersIncome}
-                    onChange={(e) => setPartnersIncome(e.target.value)}
-                    type="search"
-                    id="search-dropdown"
-                    className="block py-2 w-full pl-8 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
-                    disabled={!costpartner}
-                    placeholder="0"
-                    required
-                  />
-                  <button
-                    type="submit"
-                    className="absolute top-0 right-0 py-2 px-2 text-sm font-medium text-black rounded-r-lg border border-gray-300 focus:outline-none"
-                  >
-                    Search
-                  </button>
-                </div>
-              </div> */}
-              <div>
+              <div
+                className={`${
+                  componentTarget == 0 || componentTarget == 3
+                    ? "hidden"
+                    : "block"
+                }`}
+              >
                 <div className="flex items-center mb-3">
                   <p className="font-medium text-[16px]">
                     Other personal expenses
@@ -587,19 +582,18 @@ const PersonalDetail = (props: any) => {
                     £
                   </button>
                   <input
+                    type="number"
+                    min={0}
                     value={personalexpense}
                     onChange={(e) => setPersonalExpense(e.target.value)}
-                    type="search"
-                    id="search-dropdown"
                     className="block py-2 w-full pl-8 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
-                    placeholder="Search..."
-                    required
+                    placeholder="0"
                   />
                   <button
                     type="submit"
                     className="absolute top-0 right-0 py-2 px-2 text-sm font-medium text-black rounded-r-lg border border-gray-300 focus:ring-4 focus:outline-none"
                   >
-                    Search
+                    Per month
                   </button>
                 </div>
                 <p>
@@ -651,6 +645,7 @@ const PersonalDetail = (props: any) => {
             </div>
           </div>
         </div>
+
         <div className="flex justify-center mt-10">
           <button
             className="py-3 px-4 rounded-lg text-white font-medium bg-[#0c2440]"

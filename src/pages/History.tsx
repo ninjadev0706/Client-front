@@ -5,7 +5,7 @@ const History = (props: any) => {
     const {setProcessStep, BackProcessStep} = props
 
     return(
-        <div className="">
+        <div className="flex justify-center">
             <div className="pt-10 my-5 w-10/12 px-4 md:w-10/12 lg:w-8/12 xl:w-6/12">
                 <div onClick={() => BackProcessStep()} className="flex text-sm items-center pl-2 text-[#0c2440] font-medium mb-5"><img src="download.svg" className="h-2 w-2 mr-2" alt="_"></img>Back</div>
 

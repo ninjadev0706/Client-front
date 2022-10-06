@@ -59,7 +59,7 @@ const Header = () => {
             height="12"
             viewBox="0 0 12 12"
             fill="none"
-            className="ml-2"
+            className="ml-2 sm:block hidden"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
@@ -150,7 +150,7 @@ const Header = () => {
         </button>
       </nav>
       <div>
-        Comming soon...
+        {/* Comming soon... */}
       </div>
     </div>
   );
