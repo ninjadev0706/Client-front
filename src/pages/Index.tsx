@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { DropArrow } from "../assets/Logo";
 
 // export const useOnClickOutside = (ref: unknown, handler: unknown) => {
 //   useEffect(
@@ -139,7 +138,25 @@ const Index = () => {
             <div className="dropdown xl:px-3 px-1">
               <div className="flex items-center">
                 <span>Products</span>
-                <DropArrow />
+                <div>
+                  <svg
+                    data-testid="Chevron"
+                    className="ml-2"
+                    width="18"
+                    height="9"
+                    viewBox="0 0 18 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
+                      stroke="#737373"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
               </div>
               <div className="dropdown-content w-100">
                 <div>Flexi-Loan</div>
@@ -150,7 +167,25 @@ const Index = () => {
             <div className="dropdown xl:px-3 px-1">
               <div className="flex items-center">
                 <span>Resources</span>
-                <DropArrow />
+                <div>
+                  <svg
+                    data-testid="Chevron"
+                    className="ml-2"
+                    width="18"
+                    height="9"
+                    viewBox="0 0 18 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
+                      stroke="#737373"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
               </div>
               <div className="dropdown-content w-100">
                 <div>Small business loan</div>
@@ -162,7 +197,25 @@ const Index = () => {
             <div className="dropdown xl:px-3 px-1">
               <div className="flex items-center">
                 <span>News</span>
-                <DropArrow />
+                <div>
+                  <svg
+                    data-testid="Chevron"
+                    className="ml-2"
+                    width="18"
+                    height="9"
+                    viewBox="0 0 18 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
+                      stroke="#737373"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
               </div>
               <div className="dropdown-content w-100">
                 <div>Insights</div>
@@ -173,7 +226,25 @@ const Index = () => {
             <div className="dropdown xl:px-3 px-1">
               <div className="flex items-center">
                 <span>About</span>
-                <DropArrow />
+                <div>
+                  <svg
+                    data-testid="Chevron"
+                    className="ml-2"
+                    width="18"
+                    height="9"
+                    viewBox="0 0 18 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
+                      stroke="#737373"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
               </div>
               <div className="dropdown-content w-100">
                 <div>About us</div>
