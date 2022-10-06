@@ -403,7 +403,7 @@ const Index = () => {
           </ul>
           <div className="mt-10">
             <button
-              className="py-2 px-30 rounded-md shadow-2xl hover:shadow-none bg-[#fb534a] text-white font-medium"
+              className="py-2 px-10 rounded-md shadow-2xl hover:shadow-none bg-[#fb534a] text-white font-medium"
               type="button"
               onClick={() => setShowModal(true)}
             >

@@ -209,7 +209,7 @@ const PersonalDetail = (props: any) => {
                   ></input>
                 </div>
               </div>
-              <div className={`${maddress ? "hidden" : "block"}`}>
+              <div className={`${maddress ? "hidden" : "hidden"}`}>
                 <div className={`flex items-center mb-3`}>
                   <p className="font-medium text-[16px]">Home address</p>
                   <Tippy interactive content={tooltip.address}>
@@ -249,7 +249,7 @@ const PersonalDetail = (props: any) => {
                 </a>
               </div>
 
-              <div className={`${maddress ? "block" : "hidden"}`}>
+              <div className={`${maddress ? "block" : "block"}`}>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="font-medium text-[16px] mb-3">
@@ -310,9 +310,9 @@ const PersonalDetail = (props: any) => {
                     </div>
                   </div>
                 </div>
-                <a className="text-sm py-2" onClick={() => setMaddress(0)}>
+                {/* <a className="text-sm py-2" onClick={() => setMaddress(0)}>
                   Search for my address
-                </a>
+                </a> */}
               </div>
 
               <div>
