@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import { navLogo, DropArrow } from "../assets/Logo";
+import { DropArrow } from "../assets/Logo";
 
 // export const useOnClickOutside = (ref: unknown, handler: unknown) => {
 //   useEffect(
