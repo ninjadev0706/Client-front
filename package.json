@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ideal-postcodes/address-finder": "^4.0.0",
     "@tippyjs/react": "^4.2.6",
     "axios": "^0.27.2",
     "formik": "^2.2.9",

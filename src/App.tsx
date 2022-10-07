@@ -5,8 +5,8 @@ import { Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-const Index = lazy(() => import("./pages/Index"));
-const Sandbox = lazy(() => import("./pages/Sandbox"));
+const Index = lazy(() => import("./view/Index"));
+const Sandbox = lazy(() => import("./view/Sandbox"));
 
 function App() {
   return (

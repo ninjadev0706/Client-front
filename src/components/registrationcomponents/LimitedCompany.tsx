@@ -11,16 +11,12 @@ import Select from "react-select";
 
 const LimitedCompany = (props: any) => {
   const {
-    // LimitedCompanyName,
-    // BusinessStartDay,
-    // WebSite,
-    // LastMonthturnor,
-    // HaveOnlineSales,
-    // IsVAT,
     setCompanyName,
     companyName,
     setCompanyNumber,
     companyNumber,
+    setTradingName,
+    tradingName,
     setStartYear,
     startYear,
     setStartMonth,
@@ -31,11 +27,11 @@ const LimitedCompany = (props: any) => {
     turnover,
     setOnlineRevenue,
     onlineRevenue,
+    onlineRevenuelist,
     setVATregistered,
     VATregistered,
     tooltip,
     monthOptions,
-    onlinesales,
     customStyle,
   } = props;
 
@@ -43,11 +39,11 @@ const LimitedCompany = (props: any) => {
 
   return (
     <div className="grid md:grid-cols-2 gap-5">
-      <div>
+      {/* <div>
         <div>
           <div className="grid grid-cols-2 gap-2 w-full">
             <div className="">
-              <p className="font-medium text-[16px] mb-3">Company Name</p>
+              <p className="font-medium text-[16px] mb-3">Your Name</p>
               <input
                 value={companyName}
                 onChange={(e) => setCompanyName(e.target.value)}
@@ -69,6 +65,20 @@ const LimitedCompany = (props: any) => {
           </div>
           <a className="text-sm font-thin py-2">Search for your company</a>
         </div>
+      </div> */}
+      <div>
+        <div className="font-medium text-[16px] mb-3 flex">
+          Trading name<p className="pl-2">(optional)</p>
+        </div>
+        {/* {tradingName.length === 0 && <div className="w-full bg-red-500 text-white px-2 py-0.5">Enter your trading name</div>} */}
+        <div className="relative w-full">
+          <input
+            value={tradingName}
+            onChange={(e) => setTradingName(e.target.value)}
+            className="rounded-lg block p-2 w-full px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            // required
+          />
+        </div>
       </div>
 
       <div className="font-medium text-[16px]">
@@ -89,23 +99,28 @@ const LimitedCompany = (props: any) => {
             </svg>
           </Tippy>
         </div>
-        <div className="flex">
-          <div className="border rounded-l-lg border-gray-300 w-6/12">
-            <Select
-              options={monthOptions}
-              onChange={(startMonth) => setStartMonth(startMonth)}
-              styles={customStyle}
-              placeholder="Month"
-            />
+        <div>
+        {(!startYear.length || !startMonth) && <div className="w-full bg-red-500 text-white px-2 py-0.5">Enter your business start date</div>}
+          <div className="flex">
+            <div className="border rounded-l-lg border-gray-300 w-6/12">
+              <Select
+                options={monthOptions}
+                onChange={(startMonth) => setStartMonth(startMonth)}
+                styles={customStyle}
+                placeholder="Month"
+              />
+            </div>
+            <div>
+              <input
+                type="number"
+                min={0}
+                value={startYear}
+                onChange={(e) => setStartYear(e.target.value)}
+                className="w-6/12 rounded-r-lg block p-2 w-full  px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                placeholder="YYYY"
+              ></input>
+            </div>
           </div>
-          <input
-            type="number"
-            min={0}
-            value={startYear}
-            onChange={(e) => setStartYear(e.target.value)}
-            className="w-6/12 rounded-r-lg block p-2 w-full  px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            placeholder="YYYY"
-          ></input>
         </div>
         <p className="text-sm font-thin py-2">
           New business? Enter the expected launch date.
@@ -142,6 +157,7 @@ const LimitedCompany = (props: any) => {
             </svg>
           </Tippy>
         </div>
+        {!turnover.length && <div className="w-full bg-red-500 text-white px-2 py-0.5">Last 12 months turnover</div>}
         <div className="ralative flex">
           <div className="absolute py-2 px-[12px] text-gray-600 border-r">
             £
@@ -151,8 +167,7 @@ const LimitedCompany = (props: any) => {
             min={0}
             value={turnover}
             onChange={(e) => setTurnover(e.target.value)}
-            className="rounded-lg block py-2 px-[36px] w-full  px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            placeholder="0"
+            className="rounded-lg block py-2 pl-[36px] w-full  px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
           ></input>
         </div>
       </div>
@@ -163,9 +178,10 @@ const LimitedCompany = (props: any) => {
         </p>
         <div className="rounded-lg border border-gray-300">
           <Select
-            options={onlinesales}
+            value={onlineRevenue}
+            options={onlineRevenuelist}
             styles={customStyle}
-            onChange={() => setOnlineRevenue(onlineRevenue)}
+            onChange={(onlineRevenue) => setOnlineRevenue(onlineRevenue)}
           />
         </div>
       </div>

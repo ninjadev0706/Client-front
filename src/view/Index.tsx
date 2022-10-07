@@ -25,7 +25,7 @@ import { Link } from "react-router-dom";
 
 const Index = () => {
   const [showModal, setShowModal] = useState(false);
-  const [amount, setAmountReg] = useState("");
+  const [amount, setAmountReg] = useState("0");
   const [usermail, setUsermailReg] = useState("");
   const [toggle, setToggle] = useState(false);
   const ref = useRef();
@@ -70,6 +70,8 @@ const Index = () => {
   const alldisable = () => {
     setShowModal(false);
   };
+
+  const [validateresult, setValidateResult] = useState(true);
   const Validatemailtype = () => {
     if (
       usermail
@@ -78,9 +80,12 @@ const Index = () => {
           /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         )
     ) {
+      setValidateResult(true);
       return true;
+    } else {
+      setValidateResult(false);
+      return false;
     }
-    return false;
   };
   useOnClickOutside(ref, () => alldisable());
   return (
@@ -460,10 +465,11 @@ const Index = () => {
                       </p>
                     </div>
                     <div className="w-6/12 pl-5">
+                      <div className={`${validateresult == false? "block px-1 text-white bg-[#ff5555]":"hidden"} `}>Input correct Email.</div>
                       <input
                         type="email"
                         id="mail"
-                        className="form-input bg-white border text-sm rounded-lg focus:ring-black focus:ring-2 outline-none block w-full p-2.5 border-gray-600 placeholder-gray-400 focus:border-black"
+                        className={`form-input bg-white border text-sm rounded-lg focus:ring-black focus:ring-2 outline-none block w-full p-2.5 border-gray-600 placeholder-gray-400 focus:border-black`}
                         name="usermail"
                         placeholder="Enter your business email"
                         value={usermail}
@@ -484,10 +490,10 @@ const Index = () => {
                         type="number"
                         min={0}
                         id="mail"
-                        className="form-input bg-white border text-sm rounded-lg focus:ring-black focus:ring-2 outline-none block w-full p-2.5 border-gray-600 placeholder-gray-400 focus:border-black"
                         name="amount"
                         placeholder="Any amount, up to £500,000"
                         value={amount}
+                        className={`form-input bg-white border text-sm rounded-lg focus:ring-black focus:ring-2 outline-none block w-full p-2.5 border-gray-600 placeholder-gray-400 focus:border-black`}
                         onChange={(e) => setAmountReg(e.target.value)}
                         required
                       />

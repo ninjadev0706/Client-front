@@ -20,17 +20,17 @@ const SoleTrader = (props: any) => {
     lastProfit,
     setOnlineRevenue,
     onlineRevenue,
+    onlineRevenuelist,
     setVATregistered,
     VATregistered,
     tooltip,
     monthOptions,
-    onlinesales,
     customStyle,
     businessindustrylist,
   } = props;
 
   return (
-    <div className="grid md:grid-cols-2 gap-5">
+    <div className="md:w-[600px] lg:w-[800px] xl:w-[1200px]">
       <div>
         <div className="font-medium text-[16px] mb-3 flex">
           Trading name<p className="pl-2">(optional)</p>
@@ -41,7 +41,8 @@ const SoleTrader = (props: any) => {
             value={tradingName}
             onChange={(e) => setTradingName(e.target.value)}
             className="rounded-lg block p-2 w-full px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            required
+            placeholder="Trading name"
+            // required
           />
         </div>
       </div>
@@ -52,6 +53,7 @@ const SoleTrader = (props: any) => {
         </p>
         <div className="relative w-full">
           <div className="border border-gray-300 rounded-lg">
+            {businessindustrylist.length === 0 && <div className="w-full bg-red-500 text-white px-2 py-0.5">Enter your business title.</div>}
             <Select
               options={businessindustrylist}
               styles={customStyle}
@@ -93,24 +95,28 @@ const SoleTrader = (props: any) => {
             </svg>
           </Tippy>
         </div>
-        <div className="flex">
-          <div className="border rounded-l-lg border-gray-300 w-6/12">
-            <Select
-              options={monthOptions}
-              onChange={(startMonth) => setStartMonth(startMonth)}
-              styles={customStyle}
-              placeholder="Month"
-            />
+        <div>
+        {(!startYear.length || !startMonth) && <div className="w-full bg-red-500 text-white px-2 py-0.5">Enter your business start date</div>}
+          <div className="flex">
+            <div className="border rounded-l-lg border-gray-300 w-full">
+              <Select
+                options={monthOptions}
+                onChange={(startMonth) => setStartMonth(startMonth)}
+                styles={customStyle}
+                placeholder="Month"
+              />
+            </div>
+            <div className="w-full">
+              <input
+                type="number"
+                min={0}
+                value={startYear}
+                onChange={(e) => setStartYear(e.target.value)}
+                className="rounded-r-lg block p-2 px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                placeholder="YYYY"
+              ></input>
+            </div>
           </div>
-          <input
-            type="number"
-            min={0}
-            max={3000}
-            value={startYear}
-            onChange={(e) => setStartYear(e.target.value)}
-            className="w-6/12 rounded-r-lg block p-2 w-full  px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            placeholder="YYYY"
-          ></input>
         </div>
         <p className="text-sm font-thin py-2">
           New business? Enter the expected launch date.
@@ -135,6 +141,7 @@ const SoleTrader = (props: any) => {
             </svg>
           </Tippy>
         </div>
+        {!turnover.length && <div className="w-full bg-red-500 text-white px-2 py-0.5">Last 12 months turnover</div>}
         <div className="ralative flex">
           <div className="absolute py-2 px-[12px] text-gray-600 border-r">
             £
@@ -144,7 +151,7 @@ const SoleTrader = (props: any) => {
             min={0}
             value={turnover}
             onChange={(e) => setTurnover(e.target.value)}
-            className="rounded-lg block py-2 px-[36px] w-full  px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+            className="rounded-lg block py-2 pl-[36px] w-full  px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             placeholder="0"
           ></input>
         </div>
@@ -170,6 +177,7 @@ const SoleTrader = (props: any) => {
             </svg>
           </Tippy>
         </div>
+        {!lastProfit.length && <div className="w-full bg-red-500 text-white px-2 py-0.5">Last 12 months lastProfit</div>}
         <div className="flex items-center">
           <div className="block p-2  px-3 text-sm text-gray-900 bg-gray-50  border rounded-l-lg text-4">
             £
@@ -191,9 +199,10 @@ const SoleTrader = (props: any) => {
         </p>
         <div className="rounded-lg border border-gray-300">
           <Select
-            options={onlinesales}
+            value={onlineRevenue}
+            options={onlineRevenuelist}
             styles={customStyle}
-            onChange={() => setOnlineRevenue(onlineRevenue)}
+            onChange={(onlineRevenue) => setOnlineRevenue(onlineRevenue)}
           />
         </div>
       </div>

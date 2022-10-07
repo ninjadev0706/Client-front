@@ -140,34 +140,36 @@ const PersonalDetail = (props: any) => {
 
   return (
     <div className="flex justify-center">
-      <div className="pt-10 w-[660px] md:w-[811px]">
-        <div
+      <div className="pt-10 w-[660px] md:w-[811px]  mb-20">
+        <button
           onClick={() => BackProcessStep()}
-          className="flex text-sm items-center pl-2 text-[#0c2440] font-medium"
+          className="flex text-sm items-center pl-2 text-[#0c2440] font-medium mb-5"
         >
           <img src="download.svg" className="h-2 w-2 mr-2" alt="_"></img>Back
-        </div>
+        </button>
         <div className="text-2xl font-bold text-[#0c2440]">
           Tell us about yourself
         </div>
 
         <div className="my-5 box shadow-2xl p-[30px] text-[#0c2440] mb-10 bg-white rounded-2xl">
           <div className="rounded-lg bg-white pt-10">
-            <div className="grid md:grid-cols-2 gap-5">
+            <div className="">
               <div>
                 <p className="font-medium text-[16px] mb-3">Full name</p>
+                {!(firstName.length && lastName.length) && <div className="w-full bg-red-500 text-white px-2 py-0.5">Enter your full name</div>}
                 <div className="flex rounded-lg">
-                  <div className="border border-gray-300 rounded-l-lg w-3/12">
+                  <div className="border border-gray-300 rounded-l-lg w-4/12">
                     <Select
                       options={nameOptions}
                       styles={customStyle}
                       onChange={(namehead) => setNameHead(namehead)}
+                      placeholder="Mr"
                     />
                   </div>
                   <input
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
-                    className="block p-2 w-full w-5/12  px-3 text-sm border border-gray-300 focus:outline-none"
+                    className="block p-2 w-full w-4/12  px-3 text-sm border border-gray-300 focus:outline-none"
                     placeholder="First name"
                   ></input>
                   <input
@@ -180,6 +182,7 @@ const PersonalDetail = (props: any) => {
               </div>
               <div>
                 <p className="font-medium text-[16px] mb-3">Date of birth</p>
+                {!(birthdd.length && birthmm.length && birthyy.length) && <div className="w-full bg-red-500 text-white px-2 py-0.5">Enter your birthday</div>}
                 <div className="flex rounded-lg">
                   <input
                     type="number"
@@ -187,8 +190,8 @@ const PersonalDetail = (props: any) => {
                     max={31}
                     value={birthdd}
                     onChange={(e) => setBirthdd(e.target.value)}
-                    className="rounded-l-lg block w-full p-2 pl-3 pr-16 text-sm border border-gray-300 focus:outline-none"
-                    placeholder="DD"
+                    className="rounded-l-lg block w-full p-2 pl-3 text-sm border border-gray-300 focus:outline-none"
+                    placeholder="Day"
                   ></input>
                   <div className="border w-full border-gray-300">
                     <Select
@@ -204,12 +207,12 @@ const PersonalDetail = (props: any) => {
                     max={3000}
                     value={birthyy}
                     onChange={(e) => setBirthyy(e.target.value)}
-                    className="rounded-r-lg block w-full p-2 pl-3 pr-16 text-sm border border-gray-300 focus:outline-none"
-                    placeholder="Last name"
+                    className="rounded-r-lg block w-full p-2 pl-3 text-sm border border-gray-300 focus:outline-none"
+                    placeholder="Year"
                   ></input>
                 </div>
               </div>
-              <div className={`${maddress ? "hidden" : "hidden"}`}>
+              <div className={`${maddress ? "hidden" : "block"}`}>
                 <div className={`flex items-center mb-3`}>
                   <p className="font-medium text-[16px]">Home address</p>
                   <Tippy interactive content={tooltip.address}>
@@ -218,15 +221,16 @@ const PersonalDetail = (props: any) => {
                       className="h-4 w-4 ml-2 inline relative cursor-pointer -top-[1px]"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                    >
+                      >
                       <path
                         fillRule="evenodd"
                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
                         clipRule="evenodd"
-                      />
+                        />
                     </svg>
                   </Tippy>
                 </div>
+                {!homeaddress.length && <div className="w-full bg-red-500 text-white px-2 py-0.5">Enter your home address</div>}
                 <div className="relative w-full mb-2">
                   <input
                     value={homeaddress}
@@ -244,12 +248,12 @@ const PersonalDetail = (props: any) => {
                     Search
                   </button>
                 </div>
-                <a className="text-sm py-2" onClick={() => setMaddress(1)}>
+                <button className="text-sm text-[#0000ff] py-2" onClick={() => setMaddress(1)}>
                   Enter address manually
-                </a>
+                </button>
               </div>
 
-              <div className={`${maddress ? "block" : "block"}`}>
+              <div className={`${maddress ? "block" : "hidden"}`}>
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <p className="font-medium text-[16px] mb-3">
@@ -260,7 +264,7 @@ const PersonalDetail = (props: any) => {
                       onChange={(e) => setAddressline1(e.target.value)}
                       type="search"
                       id="search-dropdown"
-                      className="block p-2 w-full pl-3 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                      className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
                       required
                     />
                   </div>
@@ -273,7 +277,7 @@ const PersonalDetail = (props: any) => {
                       onChange={(e) => setAddressline2(e.target.value)}
                       type="search"
                       id="search-dropdown"
-                      className="block p-2 w-full pl-3 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                      className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
                       required
                     />
                   </div>
@@ -284,7 +288,7 @@ const PersonalDetail = (props: any) => {
                       onChange={(e) => setAddcity(e.target.value)}
                       type="search"
                       id="search-dropdown"
-                      className="block p-2 w-full pl-3 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                      className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
                       required
                     />
                   </div>
@@ -295,7 +299,7 @@ const PersonalDetail = (props: any) => {
                       onChange={(e) => setPostcode(e.target.value)}
                       type="search"
                       id="search-dropdown"
-                      className="block p-2 w-full pl-3 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                      className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
                       required
                     />
                   </div>
@@ -310,9 +314,9 @@ const PersonalDetail = (props: any) => {
                     </div>
                   </div>
                 </div>
-                {/* <a className="text-sm py-2" onClick={() => setMaddress(0)}>
+                <button className="text-sm text-[#0000ff] py-2" onClick={() => setMaddress(0)}>
                   Search for my address
-                </a> */}
+                </button>
               </div>
 
               <div>
@@ -336,22 +340,23 @@ const PersonalDetail = (props: any) => {
                       className="h-4 w-4 ml-2 inline relative cursor-pointer -top-[1px]"
                       viewBox="0 0 20 20"
                       fill="currentColor"
-                    >
+                      >
                       <path
                         fillRule="evenodd"
                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
                         clipRule="evenodd"
-                      />
+                        />
                     </svg>
                   </Tippy>
                 </div>
+                {!mainphone.length && <div className="w-full bg-red-500 text-white px-2 py-0.5">Enter your phone number</div>}
                 <div className="relative w-full mb-2">
                   <input
                     value={mainphone}
                     onChange={(e) => setMainphone(e.target.value)}
                     type="number"
                     className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
-                    placeholder="Search..."
+                    placeholder="+44 1234 567890"
                     required
                   />
                 </div>
@@ -366,7 +371,8 @@ const PersonalDetail = (props: any) => {
                     type="number"
                     value={addphone}
                     onChange={(e) => setAddphone(e.target.value)}
-                    className="rounded-lg block p-2 w-full pl-3 pr-16 text-sm border border-gray-300 focus:outline-none"
+                    className="rounded-lg block p-2 w-full pl-3 text-sm border border-gray-300 focus:outline-none"
+                    placeholder="+44 1234 567890"
                   ></input>
                 </div>
               </div>
@@ -400,43 +406,43 @@ const PersonalDetail = (props: any) => {
               </p>
               <div className="w-full flex">
                 <button
-                  className="p-2 border text-sm rounded-l-lg"
+                  className={`p-2 px-4 ${dependent == 0? "bg-[#0c2440] text-white":"bg-white text-[#0c2440]"} border text-sm rounded-l-lg`}
                   onClick={() => setDependent(0)}
                 >
                   0
                 </button>
                 <button
-                  className="p-2 border text-sm"
+                  className={`p-2 px-4 ${dependent == 1? "bg-[#0c2440] text-white":"bg-white text-[#0c2440]"} border text-sm`}
                   onClick={() => setDependent(1)}
                 >
                   1
                 </button>
                 <button
-                  className="p-2 border text-sm"
+                  className={`p-2 px-4 ${dependent == 2? "bg-[#0c2440] text-white":"bg-white text-[#0c2440]"} border text-sm`}
                   onClick={() => setDependent(2)}
                 >
                   2
                 </button>
                 <button
-                  className="p-2 border text-sm"
+                  className={`p-2 px-4 ${dependent == 3? "bg-[#0c2440] text-white":"bg-white text-[#0c2440]"} border text-sm`}
                   onClick={() => setDependent(3)}
                 >
                   3
                 </button>
                 <button
-                  className="p-2 border text-sm"
+                  className={`p-2 px-4 ${dependent == 4? "bg-[#0c2440] text-white":"bg-white text-[#0c2440]"} border text-sm`}
                   onClick={() => setDependent(4)}
                 >
                   4
                 </button>
                 <button
-                  className="p-2 border text-sm"
+                  className={`p-2 px-4 ${dependent == 5? "bg-[#0c2440] text-white":"bg-white text-[#0c2440]"} border text-sm`}
                   onClick={() => setDependent(5)}
                 >
                   5
                 </button>
                 <button
-                  className="p-2 border text-sm rounded-r-lg"
+                  className={`p-2 px-4 ${dependent == 6? "bg-[#0c2440] text-white":"bg-white text-[#0c2440]"} border text-sm rounded-r-lg`}
                   onClick={() => setDependent(6)}
                 >
                   6 or more
@@ -538,17 +544,16 @@ const PersonalDetail = (props: any) => {
                   <input
                     value={nobusiness}
                     onChange={(e) => setNoBusiness(e.target.value)}
-                    className="block py-2 w-full pl-8 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                    className={`${!nonebusinessIncome? "bg-[#ddd] border-gray-100":"bg-white border-gray-300"} block py-2 w-full pl-8 pr-20 text-sm rounded-r-lg rounded-l-lg border focus:outline-none`}
                     disabled={!nonebusinessIncome}
                     pattern="[0-9]"
                     required
                   />
-                  <button
-                    type="submit"
+                  <div
                     className="absolute top-0 right-0 py-2 px-2 text-sm font-medium text-black rounded-r-lg border border-gray-300 focus:outline-none"
                   >
                     per month
-                  </button>
+                  </div>
                 </div>
               </div>
               <div
@@ -578,23 +583,22 @@ const PersonalDetail = (props: any) => {
                   </Tippy>
                 </div>
                 <div className="relative w-full mb-2">
-                  <button className="absolute top-0 left-0 py-2 px-2 text-sm font-medium text-black rounded-l-lg border border-gray-300 focus:ring-4 focus:outline-none">
+                  <div className="absolute top-0 left-0 py-2 px-2 text-sm font-medium text-black rounded-l-lg border border-gray-300 focus:ring-4 focus:outline-none">
                     £
-                  </button>
+                  </div>
                   <input
                     type="number"
                     min={0}
                     value={personalexpense}
                     onChange={(e) => setPersonalExpense(e.target.value)}
-                    className="block py-2 w-full pl-8 pr-16 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                    className="block py-2 w-full pl-8 pr-20 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
                     placeholder="0"
                   />
-                  <button
-                    type="submit"
+                  <div
                     className="absolute top-0 right-0 py-2 px-2 text-sm font-medium text-black rounded-r-lg border border-gray-300 focus:ring-4 focus:outline-none"
                   >
                     Per month
-                  </button>
+                  </div>
                 </div>
                 <p>
                   e.g. Food, transport, utilities and interest on personal loans
@@ -638,7 +642,7 @@ const PersonalDetail = (props: any) => {
                 </ul>
                 <p>
                   If you’d like to find out more, check our{" "}
-                  <a>privacy policy.</a>
+                  <button className="text-[#0000ff]">privacy policy.</button>
                 </p>
                 <p>iwoca Ltd is the data controller.</p>
               </div>
