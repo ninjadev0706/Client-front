@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [loanamount, setLoanamount] = useState("");
+  const [newvalue, setNewvalue] = useState("");
+  const setNewAmount = (newAmount: any) => {
+    localStorage.setItem("loan_amount", String(newAmount));
+    setShowModal(false)
+  }
   var amount: any = localStorage.getItem("loan_amount");
   useEffect(() => {
-    setLoanamount(amount)
-  }, [amount])
+    setLoanamount(amount);
+  }, [amount]);
   return (
     <div>
       <nav className="flex justify-between items-center bg-white text-[#184681] text-base font-semibold font-medium py-4 px-4 md:px-20 lg:px-40 xl:px-60">
@@ -59,21 +65,23 @@ const Header = () => {
             </svg>
           </a>
           You're applying for £ {amount}{" "}
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            className="ml-2 sm:block hidden"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fillRule="evenodd"
-              clipRule="evenodd"
-              d="M9.525 0.225L11.775 2.475C12.075 2.775 12.075 3.225 11.775 3.525L10.425 4.875L7.125 1.575L8.475 0.225C8.775 -0.075 9.225 -0.075 9.525 0.225ZM0.225 8.475L6.075 2.625L9.375 5.925L3.525 11.775C3.375 11.925 3.225 12 3 12H0.75C0.3 12 0 11.7 0 11.25V9C0 8.775 0.075 8.625 0.225 8.475Z"
-              fill="#184681"
-            ></path>
-          </svg>
+          <button type="button" onClick={() => setShowModal(true)}>
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 12 12"
+              fill="none"
+              className="ml-2 sm:block text-"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M9.525 0.225L11.775 2.475C12.075 2.775 12.075 3.225 11.775 3.525L10.425 4.875L7.125 1.575L8.475 0.225C8.775 -0.075 9.225 -0.075 9.525 0.225ZM0.225 8.475L6.075 2.625L9.375 5.925L3.525 11.775C3.375 11.925 3.225 12 3 12H0.75C0.3 12 0 11.7 0 11.25V9C0 8.775 0.075 8.625 0.225 8.475Z"
+                fill="#184681"
+              ></path>
+            </svg>
+          </button>
         </div>
 
         <div className="lg:flex justify-end items-center hidden">
@@ -154,9 +162,55 @@ const Header = () => {
           </svg>
         </button>
       </nav>
+      {/* modal */}
+      {showModal ? (
       <div>
-        {/* Comming soon... */}
-      </div>
+        <div className="static justify-center items-center flex fixed inset-0 z-50 outline-none focus:outline-none bg-[#00000099]">
+          <div className="relative rounded-lg w-4/12 my-6 mx-auto bg-white p-10">
+            <div className="flex border-b-2 mb-2 pb-2">
+              <p>Edit your previous answers.</p>
+              <button
+                className="absolute top-0 right-0 pt-4 pr-1"
+                onClick={() => setShowModal(false)}
+                type="button"
+              >
+                <svg
+                  height="20px"
+                  width="20px"
+                  viewBox="0 0 24 24"
+                  fill="[#555]"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1.41421 6.18174e-08L12.7279 11.3137L11.3137 12.7279L0 1.41421L1.41421 6.18174e-08Z"
+                    fill="[#555]"
+                  ></path>
+                  <path
+                    d="M0 11.3137L11.3137 0L12.7279 1.41421L1.41421 12.7279L0 11.3137Z"
+                    fill="[#555]"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+            <p className="text-[#0c2440] text-xl">Current loan amount is {amount}.</p>
+            <input
+              type="number"
+              min={0}
+              id="amount"
+              name="amount"
+              placeholder="Any amount, up to £500,000"
+              className={`form-input bg-white border text-xl mt-10 rounded-lg focus:ring-black focus:ring-2 outline-none block w-full p-2 border-gray-600 placeholder-gray-400 focus:border-black`}
+              onChange={(e) => setNewvalue(e.target.value)}
+              required
+            />
+            <button 
+              className="p-4 text-center bg-[#0c2440] w-full text-white rounded-lg mt-10 text-xl"
+              onClick={() => setNewAmount(newvalue)}>
+              <p>Change amount now.</p>
+            </button>
+          </div>
+        </div>
+      </div>) : null}
     </div>
   );
 };

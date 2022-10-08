@@ -494,7 +494,7 @@ const Index = () => {
                         name="amount"
                         placeholder="Any amount, up to £500,000"
                         value={amount}
-                        className={`form-input bg-white border text-sm rounded-lg focus:ring-black focus:ring-2 outline-none block w-full p-2.5 border-gray-600 placeholder-gray-400 focus:border-black`}
+                        className={`form-input bg-white border text-sm rounded-lg focus:ring-black focus:ring-2 outline-none block w-full p-2 border-gray-600 placeholder-gray-400 focus:border-black`}
                         onChange={(e) => setAmountReg(e.target.value)}
                         required
                       />
