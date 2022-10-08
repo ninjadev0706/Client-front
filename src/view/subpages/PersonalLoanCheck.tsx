@@ -194,7 +194,6 @@ const PersonalLoanCheck = (props: any) => {
     birthYear: birthYear,
     usermail: usermail,
     houseName: houseName,
-    homeaddress: homeaddress,
     addressline1: addressline1,
     addressline2: addressline2,
     addcity: addcity,
@@ -211,16 +210,26 @@ const PersonalLoanCheck = (props: any) => {
 
   const CheckToNext = async () => {
     if (
+      namehead &&
       firstName &&
       surName &&
+      birthDay &&
+      birthMonth &&
+      birthYear &&
       usermail &&
-      confirmemailaddress &&
+      houseName &&
+      addressline1 &&
+      addressline2 &&
+      addcity &&
+      country &&
+      postcode &&
       occupation &&
       purpose &&
       marital &&
       dependents &&
       GAIC &&
-      mortgagepayment
+      mortgagepayment &&
+      loanAmount
     ) {
       await axios({
         method: "post",
