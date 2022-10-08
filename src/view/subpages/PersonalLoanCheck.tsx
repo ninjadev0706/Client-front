@@ -10,13 +10,17 @@ const PersonalLoanCheck = (props: any) => {
   const [namehead, setNameHead] = useState("");
   const [firstName, setFirstName] = useState("");
   const [surName, setSurName] = useState("");
-  const [birthDaylist, setBirthDaylist] = useState<number[]>([]);
   const [birthDay, setBirthDay] = useState(1);
   const [birthMonth, setBirthMonth] = useState("");
   const [birthYear, setBirthYear] = useState<number>();
   const [usermail, setUsermailReg] = useState("");
   const [confirmemailaddress, setConfirmEmailaddress] = useState("");
   const [houseName, setHouseName] = useState("");
+  const [homeaddress, setHomeaddress] = useState("");
+  const [addressline1, setAddressline1] = useState("");
+  const [addressline2, setAddressline2] = useState("");
+  const [addcity, setAddcity] = useState("");
+  const [country, setCountry] = useState<String>();
   const [postcode, setPostCode] = useState("");
   const [occupation, setOccupation] = useState("");
   const [purpose, setPurpose] = useState("");
@@ -29,11 +33,14 @@ const PersonalLoanCheck = (props: any) => {
   useEffect(() => {
     setLoanAmount(amount)
   }, [amount])
-
+  
   const [isRequired, setIsRequired] = useState(false);
+  const [birthDaylist, setBirthDaylist] = useState<number[]>([]);
   const [validateresult, setValidateResult] = useState(true);
   const [dayslist, setDaysList] = useState([]);
   const [dayoptions, setDayOptions] = useState([]);
+  const [max, setMax] = useState(31);
+  const [maddress, setMaddress] = useState(0);
 
   let dayOptions: any = [];
 
@@ -106,6 +113,13 @@ const PersonalLoanCheck = (props: any) => {
     { day: "30", value: "November", label: "November" },
     { day: "31", value: "December", label: "December" },
   ];
+  const countries = [
+    { value: "United Kingdom", label: "United Kingdom" },
+    { value: "Germany", label: "Germany" },
+    { value: "Poland", label: "Poland" },
+    { value: "Spain", label: "Spain" },
+    { value: "Other", label: "Other" },
+  ];
 
   const customStyle = {
     control: (provided: any, state: any) => ({
@@ -140,12 +154,16 @@ const PersonalLoanCheck = (props: any) => {
 
   const setBirth = (birthMonth: any) => {
     setBirthMonth(birthMonth.value);
-    const dayList = range(0, birthMonth.day);
+    setMax(birthMonth.day)
+  };
+
+  useEffect (() => {
+    const dayList = range(0, max);
     dayOptions = dayList.map((day) => {
       return { value: day, label: day };
     });
     setBirthDaylist(dayOptions);
-  };
+  }, [birthMonth])
 
   const Validatemailtype = () => {
     if (
@@ -176,6 +194,11 @@ const PersonalLoanCheck = (props: any) => {
     birthYear: birthYear,
     usermail: usermail,
     houseName: houseName,
+    homeaddress: homeaddress,
+    addressline1: addressline1,
+    addressline2: addressline2,
+    addcity: addcity,
+    country: country,
     postcode: postcode,
     occupation: occupation,
     purpose: purpose,
@@ -227,7 +250,7 @@ const PersonalLoanCheck = (props: any) => {
   return (
     <div className="flex justify-center">
       <div className="pt-10 mb-20">
-        <div className="box shadow-2xl py-10 px-10 text-[#0c2440] bg-white rounded-2xl xl:mx-[240px] lg:mx-[160px] md:mx-[100px] sm:mx-10 mx-2">
+        <div className="box shadow-2xl py-10 px-10 text-[#0c2440] bg-white rounded-2xl xl:mx-[240px] lg:mx-[160px] md:mx-[60px] sm:mx-10 mx-2">
           <div className="text-4xl font-black text-[#0c2440]">
             Introduce your business
           </div>
@@ -385,23 +408,93 @@ const PersonalLoanCheck = (props: any) => {
               )}
             </div>
 
-            {/* <div>
-              <p className="text-[18px] mb-3">Postcode</p>
-              <div className="flex">
-                <input
-                  type="search"
-                  value={postcode}
-                  className="rounded-l-lg block p-2 w-full px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  onChange={(e) => setPostCode(e.target.value)}
+            <div>
+              <p className="font-medium text-[18px] mb-3">Country</p>
+              <div className="border border-gray-300 rounded-lg">
+                <Select
+                  options={countries}
+                  styles={customStyle}
+                  onChange={(country: any) => setCountry(country.value)}
                 />
-                <button
-                  className="rounded-r-lg block p-2 w-full px-3 text-sm text-white bg-gray-600 hover:bg-gray-300 hover:text-gray-600"
-                  onClick={(e) => findAddressByPC(postcode)}
-                >
-                  Find Address
-                </button>
               </div>
-            </div> */}
+              <div
+                className={`${(!country && isRequired) ? "block" : "hidden"} w-full text-red-500 px-2 py-0.5`}
+              >
+                Select your location.
+              </div>
+            </div>
+
+            <div>
+              <p className="font-medium text-[18px] mb-3">
+                Address line 1
+              </p>
+              <input
+                value={addressline1}
+                onChange={(e) => setAddressline1(e.target.value)}
+                type="search"
+                id="search-dropdown"
+                className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                required
+              />
+              {!addressline1 && isRequired && (
+                <div className="w-full text-red-500 px-2 py-0.5">
+                  Input your houseName
+                </div>
+              )}
+            </div>
+
+            <div>
+              <p className="font-medium text-[18px] mb-3">
+                Address line 2
+              </p>
+              <input
+                value={addressline2}
+                onChange={(e) => setAddressline2(e.target.value)}
+                type="search"
+                id="search-dropdown"
+                className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                required
+              />
+              {!addressline2 && isRequired && (
+                <div className="w-full text-red-500 px-2 py-0.5">
+                  Input your houseName
+                </div>
+              )}
+            </div>
+
+            <div>
+              <p className="font-medium text-[18px] mb-3">Town / city</p>
+              <input
+                value={addcity}
+                onChange={(e) => setAddcity(e.target.value)}
+                type="search"
+                id="search-dropdown"
+                className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                required
+              />
+              {!addcity && isRequired && (
+                <div className="w-full text-red-500 px-2 py-0.5">
+                  Input your houseName
+                </div>
+              )}
+            </div>
+
+            <div>
+              <p className="font-medium text-[18px] mb-3">Postcode</p>
+              <input
+                value={postcode}
+                onChange={(e) => setPostCode(e.target.value)}
+                type="search"
+                id="search-dropdown"
+                className="block p-2 w-full pl-3 text-sm rounded-r-lg rounded-l-lg border border-gray-300 focus:outline-none"
+                required
+              />
+              {!postcode && isRequired && (
+                <div className="w-full text-red-500 px-2 py-0.5">
+                  Input your houseName
+                </div>
+              )}
+            </div>
 
             <div>
               <p className="text-[18px] mb-3">Occupation Status *</p>

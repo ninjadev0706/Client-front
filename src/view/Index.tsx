@@ -91,34 +91,38 @@ const Index = () => {
   useOnClickOutside(ref, () => alldisable());
   return (
     <div className="lg:px-20 px-4 xl:px-60">
-      <nav className="flex items-center justify-between text-[#737373] font-medium py-4">
-        <a className="nav_logo" href="/">
+      <nav className="relative flex items-center text-[#737373] font-medium py-4">
+        <a className="nav_logo flex items-center" href="/">
           {/* <navLogo /> */}
           <svg
-            width="139"
             height="38"
             viewBox="0 0 139 47"
             fill="#fb534a"
-            className=""
+            className="md:w-[139px] md:ml-0"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
+              className=""
               d="M2.3173 11.8141C3.65889 11.8141 4.63459 10.7978 4.63459 9.40054C4.63459 8.00325 3.65889 6.98703 2.3173 6.98703C1.09767 6.86 0 8.00325 0 9.27352C0 10.6708 1.09767 11.8141 2.3173 11.8141Z"
               fill="#fb534a"
             ></path>
             <path
+              className=""
               d="M5.1219 28.3273C4.39012 28.3273 3.90227 27.9462 3.90227 27.1841V16.0057C4.02423 15.6246 3.65834 15.2435 3.29245 15.2435H1.21908C0.853194 15.2435 0.487305 15.6246 0.487305 16.0057V27.5652C0.487305 30.4868 1.95086 31.8841 4.02423 31.8841C4.51208 31.8841 4.87797 31.8841 5.24386 31.757C5.48779 31.63 5.60975 31.503 5.60975 31.2489V28.9624C5.73171 28.5814 5.48779 28.3273 5.1219 28.3273Z"
               fill="#fb534a"
             ></path>
             <path
+              className=""
               d="M30.1249 15.2435H27.9296C27.5637 15.2435 27.3197 15.4976 27.1978 15.7516L23.9048 26.676L20.4898 15.8787C20.3679 15.6246 20.1239 15.3706 19.758 15.3706H18.2945C17.9286 15.3706 17.6847 15.6246 17.5627 15.8787L14.1478 26.676L10.8548 15.8787C10.8548 15.4976 10.4889 15.2435 10.2449 15.2435H8.04961C7.56175 15.2435 7.19586 15.7516 7.31783 16.2597L12.1963 31.2489C12.3183 31.503 12.5622 31.757 12.9281 31.757H15.1235C15.4893 31.757 15.7333 31.503 15.8552 31.2489L19.1482 21.0868L22.4412 31.2489C22.5632 31.503 22.8071 31.757 23.173 31.757H25.3683C25.7342 31.757 25.9782 31.503 26.1001 31.2489L30.8567 16.2597C30.9786 15.7516 30.6127 15.2435 30.1249 15.2435Z"
               fill="#fb534a"
             ></path>
             <path
+              className=""
               d="M40.8577 14.8616C36.2231 14.8616 32.5642 18.6724 32.5642 23.4994C32.5642 28.3264 36.2231 32.1372 40.8577 32.1372C45.4923 32.1372 49.1512 28.3264 49.1512 23.4994C49.1512 18.6724 45.4923 14.8616 40.8577 14.8616ZM40.8577 28.7075C38.0525 28.7075 36.1011 26.421 36.1011 23.4994C36.1011 20.5778 38.0525 18.2913 40.8577 18.2913C43.6628 18.2913 45.6142 20.5778 45.6142 23.4994C45.6142 26.421 43.5409 28.7075 40.8577 28.7075Z"
               fill="#fb534a"
             ></path>
             <path
+              className=""
               d="M59.7615 18.2913C61.469 18.2913 62.9326 19.1805 63.7863 20.4508C64.0302 20.7048 64.3961 20.8318 64.64 20.7048L66.5914 19.8156C66.8354 19.6886 66.9573 19.4345 66.9573 19.0535C66.9573 18.9264 66.9573 18.7994 66.8354 18.6724C66.8354 18.6724 64.884 14.8616 59.7615 14.8616C55.005 14.8616 51.2241 18.5454 51.2241 23.4994C51.2241 28.4535 54.883 32.1372 59.7615 32.0102C64.64 32.0102 66.7134 28.1994 66.7134 28.1994C66.8354 28.0724 66.8354 27.9454 66.8354 27.8183C66.8354 27.5643 66.7134 27.3102 66.3475 27.0562L64.64 26.294C64.2742 26.167 63.9083 26.167 63.7863 26.5481C62.9326 27.8183 61.591 28.7075 59.8835 28.7075C57.0783 28.7075 55.005 26.294 55.005 23.3724C54.883 20.4508 56.9564 18.2913 59.7615 18.2913Z"
               fill="#fb534a"
             ></path>
@@ -135,33 +139,36 @@ const Index = () => {
               fill="#fb534a"
             ></path>
             <path
+              className=""
               d="M86.4717 28.3276C85.7399 28.3276 85.374 27.9465 85.252 27.1844V16.133C85.252 15.752 84.8862 15.3709 84.5203 15.3709H82.5688C82.203 15.3709 81.8371 15.752 81.8371 16.133V16.8952C80.8614 15.752 79.1539 15.1168 77.2025 15.1168C72.5679 15.1168 69.2749 19.0547 69.2749 23.7547C69.2749 28.4547 72.5679 32.3925 77.2025 32.3925C78.91 32.3925 80.6174 32.0114 82.5688 29.852C82.9347 31.2493 84.0324 32.2655 85.374 32.2655C85.8619 32.2655 86.2277 32.2655 86.5936 32.1384C86.8376 32.0114 86.9595 31.8844 86.9595 31.6303V29.3438C87.0815 28.5817 86.8376 28.3276 86.4717 28.3276ZM77.6903 28.8357C74.8852 28.8357 72.8118 26.2952 73.0558 23.1195C73.1777 20.1979 75.7389 17.7844 78.5441 18.2925C80.1296 18.5466 81.1053 19.4357 81.8371 20.452V26.4222C80.9833 27.6925 79.6417 28.7087 77.6903 28.8357Z"
               fill="#fb534a"
             ></path>
           </svg>
-        </a>
-        <div className="md:w-full flex items-center">
           <div className="w-6/12 md:flex hidden">
             <div className="dropdown xl:px-3 px-1">
-              <div className="flex items-center">
-                <span>Products</span>
-                <svg
-                  data-testid="Chevron"
-                  className="ml-2"
-                  width="18"
-                  height="9"
-                  viewBox="0 0 18 9"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
-                    stroke="#737373"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
+              <div className="lg:flex items-center">
+                <div>
+                  <span>Products</span>
+                </div>
+                <div>
+                  <svg
+                    data-testid="Chevron"
+                    className="ml-2"
+                    width="18"
+                    height="9"
+                    viewBox="0 0 18 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
+                      stroke="#737373"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
               </div>
               <div className="dropdown-content w-100">
                 <div>Flexi-Loan</div>
@@ -170,25 +177,29 @@ const Index = () => {
               </div>
             </div>
             <div className="dropdown xl:px-3 px-1">
-              <div className="flex items-center">
-                <span>Resources</span>
-                <svg
-                  data-testid="Chevron"
-                  className="ml-2"
-                  width="18"
-                  height="9"
-                  viewBox="0 0 18 9"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
-                    stroke="#737373"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
+              <div className="lg:flex items-center">
+                <div>
+                  <span>Resources</span>
+                </div>
+                <div>
+                  <svg
+                    data-testid="Chevron"
+                    className="ml-2"
+                    width="18"
+                    height="9"
+                    viewBox="0 0 18 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
+                      stroke="#737373"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
               </div>
               <div className="dropdown-content w-100">
                 <div>Small business loan</div>
@@ -198,25 +209,29 @@ const Index = () => {
               </div>
             </div>
             <div className="dropdown xl:px-3 px-1">
-              <div className="flex items-center">
-                <span>News</span>
-                <svg
-                  data-testid="Chevron"
-                  className="ml-2"
-                  width="18"
-                  height="9"
-                  viewBox="0 0 18 9"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
-                    stroke="#737373"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
+              <div className="lg:flex items-center">
+                <div>
+                  <span>News</span>
+                </div>
+                <div>
+                  <svg
+                    data-testid="Chevron"
+                    className="ml-2"
+                    width="18"
+                    height="9"
+                    viewBox="0 0 18 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
+                      stroke="#737373"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
               </div>
               <div className="dropdown-content w-100">
                 <div>Insights</div>
@@ -225,25 +240,29 @@ const Index = () => {
               </div>
             </div>
             <div className="dropdown xl:px-3 px-1">
-              <div className="flex items-center">
-                <span>About</span>
-                <svg
-                  data-testid="Chevron"
-                  className="ml-2"
-                  width="18"
-                  height="9"
-                  viewBox="0 0 18 9"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
-                    stroke="#737373"
-                    strokeWidth="3"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
+              <div className="lg:flex items-center">
+                <div>
+                  <span>About</span>
+                </div>
+                <div>
+                  <svg
+                    data-testid="Chevron"
+                    className="ml-2"
+                    width="18"
+                    height="9"
+                    viewBox="0 0 18 9"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2 1.96387L8.82518 6.6077L15.5165 1.96387"
+                      stroke="#737373"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    ></path>
+                  </svg>
+                </div>
               </div>
               <div className="dropdown-content w-100">
                 <div>About us</div>
@@ -252,9 +271,14 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <div className="w-5/12 flex justify-between">
-            <button className="md:ml-20 px-8 py-2 mr-2 bg-[#648bcb] rounded-xl text-white">
-              My account
+        </a>
+        <div className="absolute right-0 flex items-center">
+          <div className="flex items-center">
+            <button
+              className="xl:ml-20 lg:ml-10 px-8 py-2 mr-2 bg-[#648bcb] rounded-xl text-white"
+              onClick={() => setShowModal(true)}
+            >
+              <p>Apply now</p>
             </button>
             <section className="md:flex hidden items-center">
               <svg
@@ -271,7 +295,7 @@ const Index = () => {
               </svg>
               <a
                 href="#"
-                className="ml-2 text-[#143b6b] text-[18px] font-bold"
+                className="ml-2 text-[#143b6b] text-[16px] font-bold"
                 data-ga-id="navbar__phone"
               >
                 020 3778 0274
@@ -329,15 +353,15 @@ const Index = () => {
 
       <div className="flex justify-between">
         <div className="pt-12 pb-4 lg:w-6/12 xl:w-6/12">
-          <p className="text-[40px] text-[#102f56] font-bold mb-9">
+          <p className="text-[32px] text-[#102f56] font-bold mb-9">
             Apply for a Flexi-Loan today
           </p>
-          <p className="font-medium text-[#000000cc] text-[18px] mb-6">
+          <p className="font-medium text-[#000000cc] text-[16px] mb-6">
             Straightforward applications and quick decisions - it’s great for
             businesses who weren’t affected by coronavirus or are starting to
             get back on track.
           </p>
-          <ul className="font-medium text-[#000000cc] text-[18px]">
+          <ul className="font-medium text-[#000000cc] text-[16px]">
             <li className="flex items-center mb-4">
               <div className="mr-4 irems-center">
                 <svg
@@ -466,7 +490,15 @@ const Index = () => {
                       </p>
                     </div>
                     <div className="w-6/12 pl-5">
-                      <div className={`${validateresult == false? "block px-1 text-white bg-[#ff5555]":"hidden"} `}>Input correct Email.</div>
+                      <div
+                        className={`${
+                          validateresult == false
+                            ? "block px-1 text-white bg-[#ff5555]"
+                            : "hidden"
+                        } `}
+                      >
+                        Input correct Email.
+                      </div>
                       <input
                         type="email"
                         id="mail"
@@ -568,7 +600,7 @@ const Index = () => {
                     <p className="text-xs">Get money in the bank in hours</p>
                   </li>
                 </ul>
-                <p className="text-center text-sm mt-10">Need help? Call us</p>
+                <p className="text-center text-sm mt-10 mb-5">Need help? Call us</p>
                 <div className="flex justify-center">
                   <section className="flex">
                     <svg
@@ -585,7 +617,7 @@ const Index = () => {
                     </svg>
                     <a
                       href="#"
-                      className="mx-2 text-white text-[18px] font-bold"
+                      className="mx-2 text-white text-[16px] font-bold"
                       data-ga-id="navbar__phone"
                     >
                       020 3778 0274
