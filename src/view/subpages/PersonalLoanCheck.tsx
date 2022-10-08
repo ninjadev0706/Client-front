@@ -20,7 +20,7 @@ const PersonalLoanCheck = (props: any) => {
   const [addressline1, setAddressline1] = useState("");
   const [addressline2, setAddressline2] = useState("");
   const [addcity, setAddcity] = useState("");
-  const [country, setCountry] = useState<String>();
+  const [country, setCountry] = useState("");
   const [postcode, setPostCode] = useState("");
   const [occupation, setOccupation] = useState("");
   const [purpose, setPurpose] = useState("");
@@ -447,7 +447,7 @@ const PersonalLoanCheck = (props: any) => {
               />
               {!addressline1 && isRequired && (
                 <div className="w-full text-red-500 px-2 py-0.5">
-                  Input your houseName
+                  Input your address line 1
                 </div>
               )}
             </div>
@@ -466,7 +466,7 @@ const PersonalLoanCheck = (props: any) => {
               />
               {!addressline2 && isRequired && (
                 <div className="w-full text-red-500 px-2 py-0.5">
-                  Input your houseName
+                  Input your address line 2
                 </div>
               )}
             </div>
