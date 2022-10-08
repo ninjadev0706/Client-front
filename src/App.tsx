@@ -11,19 +11,23 @@ const Sandbox = lazy(() => import("./view/Sandbox"));
 function App() {
   return (
     <>
-    {/* <Header /> */}
+      {/* <Header /> */}
       <Routes>
-        <Route path="/" element={
+        <Route
+          path="/"
+          element={
             <Suspense>
               <Index />
             </Suspense>
           }
         />
-        <Route path="sandbox" element={
-          <Suspense>
-            <Sandbox />
-          </Suspense>
-        } 
+        <Route
+          path="sandbox"
+          element={
+            <Suspense>
+              <Sandbox />
+            </Suspense>
+          }
         />
       </Routes>
       <Footer />

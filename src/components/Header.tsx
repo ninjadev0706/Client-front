@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+  const [loanamount, setLoanamount] = useState("");
+  var amount: any = localStorage.getItem("loan_amount");
+  useEffect(() => {
+    setLoanamount(amount)
+  }, [amount])
   return (
     <div>
-      <nav className="flex justify-between items-center bg-white text-[#184681] text-base font-semibold font-medium py-4 px-4 md:px-8">
+      <nav className="flex justify-between items-center bg-white text-[#184681] text-base font-semibold font-medium py-4 px-4 md:px-20 lg:px-40 xl:px-60">
         <div className="flex items-center">
           <a className="nav_logo" href="/">
             <svg
@@ -53,7 +58,7 @@ const Header = () => {
               ></path>
             </svg>
           </a>
-          You're applying for £100,000{" "}
+          You're applying for £ {amount}{" "}
           <svg
             width="12"
             height="12"

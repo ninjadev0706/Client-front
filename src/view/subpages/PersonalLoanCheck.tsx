@@ -7,7 +7,7 @@ import { API_URL } from "../../config";
 
 const PersonalLoanCheck = (props: any) => {
   const { AddProcessStep } = props;
-  const [namehead, setNameHead] = useState();
+  const [namehead, setNameHead] = useState("");
   const [firstName, setFirstName] = useState("");
   const [surName, setSurName] = useState("");
   const [birthDaylist, setBirthDaylist] = useState<number[]>([]);
@@ -24,7 +24,13 @@ const PersonalLoanCheck = (props: any) => {
   const [dependents, setDependents] = useState("");
   const [GAIC, setGAIC] = useState("");
   const [mortgagepayment, setMortgagePayment] = useState("");
+  const [loanAmount, setLoanAmount] = useState("");
+  var amount: any = localStorage.getItem("loan_amount");
+  useEffect(() => {
+    setLoanAmount(amount)
+  }, [amount])
 
+  const [isRequired, setIsRequired] = useState(false);
   const [validateresult, setValidateResult] = useState(true);
   const [dayslist, setDaysList] = useState([]);
   const [dayoptions, setDayOptions] = useState([]);
@@ -177,6 +183,7 @@ const PersonalLoanCheck = (props: any) => {
     dependents: dependents,
     GAIC: GAIC,
     mortgagepayment: mortgagepayment,
+    loanAmount: loanAmount
   };
 
   const CheckToNext = async () => {
@@ -212,6 +219,7 @@ const PersonalLoanCheck = (props: any) => {
         });
       AddProcessStep();
     } else {
+      setIsRequired(true);
       return false;
     }
   };
@@ -229,18 +237,18 @@ const PersonalLoanCheck = (props: any) => {
 
           <div className="grid md:grid-cols-2 gap-5">
             <div>
-              <p className="font-bold text-[24px] mb-3">Title *</p>
+              <p className="text-[18px] mb-3">Title *</p>
               <div className="flex rounded-lg">
                 <div className={`border border-gray-300 rounded-lg w-full`}>
                   <Select
                     options={nameOptions}
                     styles={customStyle}
-                    onChange={(namehead) => setNameHead(namehead.value)}
+                    onChange={(namehead: any) => setNameHead(namehead.value)}
                     placeholder="Please Select..."
                   />
                 </div>
               </div>
-              {!namehead && (
+              {!namehead && isRequired && (
                 <div className="w-full text-red-500 px-2 py-0.5">
                   Input title
                 </div>
@@ -248,13 +256,13 @@ const PersonalLoanCheck = (props: any) => {
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">Date of birth *</p>
+              <p className="text-[18px] mb-3">Date of birth *</p>
               <div className="flex">
                 <div className="border rounded-l-lg border-gray-300 w-6/12">
                   <Select
                     options={birthDaylist}
                     styles={customStyle}
-                    onChange={(birthDay) => setBirthDay(birthDay.value)}
+                    onChange={(birthDay: any) => setBirthDay(birthDay.value)}
                     placeholder="Day"
                   />
                 </div>
@@ -270,23 +278,32 @@ const PersonalLoanCheck = (props: any) => {
                   <Select
                     options={yearOptions[0]}
                     styles={customStyle}
-                    onChange={(birthyear) => setBirthYear(birthyear.value)}
+                    onChange={(birthyear: any) => setBirthYear(birthyear.value)}
                     placeholder="Year"
                   />
                 </div>
               </div>
+              <div
+                className={`${
+                  (!birthDay || !birthMonth || !birthYear) && isRequired
+                    ? "block"
+                    : "hidden"
+                } w-full text-red-500 px-2 py-0.5`}
+              >
+                Input your birthday
+              </div>
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">First Name *</p>
+              <p className="text-[18px] mb-3">First Name *</p>
               <input
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
-                className="rounded-lg block p-2 w-full px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                className={`rounded-lg block p-2 w-full px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500`}
                 placeholder="first name"
                 required
               ></input>
-              {!firstName && (
+              {!firstName && isRequired && (
                 <div className="w-full text-red-500 px-2 py-0.5">
                   Input your first name
                 </div>
@@ -294,7 +311,7 @@ const PersonalLoanCheck = (props: any) => {
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">Sur Name *</p>
+              <p className="text-[18px] mb-3">Sur Name *</p>
               <input
                 value={surName}
                 onChange={(e) => setSurName(e.target.value)}
@@ -302,7 +319,7 @@ const PersonalLoanCheck = (props: any) => {
                 placeholder="your last name"
                 required
               ></input>
-              {!surName && (
+              {!surName && isRequired && (
                 <div className="w-full text-red-500 px-2 py-0.5">
                   Input your Sur name
                 </div>
@@ -310,7 +327,7 @@ const PersonalLoanCheck = (props: any) => {
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">Email Address *</p>
+              <p className="text-[18px] mb-3">Email Address *</p>
               <input
                 type="email"
                 id="mail"
@@ -322,7 +339,7 @@ const PersonalLoanCheck = (props: any) => {
                 // onChange={(e) => validatemailtype(e.target.value)}
                 required
               />
-              {!usermail && (
+              {!usermail && isRequired && (
                 <div className="w-full text-red-500 px-2 py-0.5">
                   Input your correct email
                 </div>
@@ -330,7 +347,7 @@ const PersonalLoanCheck = (props: any) => {
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">
+              <p className="text-[18px] mb-3">
                 Please confirm your email address *
               </p>
               <input
@@ -344,7 +361,7 @@ const PersonalLoanCheck = (props: any) => {
                 // onChange={(e) => validatemailtype(e.target.value)}
                 required
               />
-              {!(usermail == confirmemailaddress) && (
+              {((!(usermail == confirmemailaddress )) || (!confirmemailaddress && isRequired)) && (
                 <div className="w-full text-red-500 px-2 py-0.5">
                   Input your correct email address.
                 </div>
@@ -352,7 +369,7 @@ const PersonalLoanCheck = (props: any) => {
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">
+              <p className="text-[18px] mb-3">
                 House Number or House Name
               </p>
               <input
@@ -361,10 +378,15 @@ const PersonalLoanCheck = (props: any) => {
                 className="rounded-lg block p-2 w-full px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Green House"
               ></input>
+              {!houseName && isRequired && (
+                <div className="w-full text-red-500 px-2 py-0.5">
+                  Input your houseName
+                </div>
+              )}
             </div>
 
             {/* <div>
-              <p className="font-bold text-[24px] mb-3">Postcode</p>
+              <p className="text-[18px] mb-3">Postcode</p>
               <div className="flex">
                 <input
                   type="search"
@@ -382,53 +404,73 @@ const PersonalLoanCheck = (props: any) => {
             </div> */}
 
             <div>
-              <p className="font-bold text-[24px] mb-3">Occupation Status *</p>
+              <p className="text-[18px] mb-3">Occupation Status *</p>
               <div className="rounded-lg border border-gray-300">
                 <Select
                   options={Occupationlist}
                   styles={customStyle}
-                  onChange={(target) => setOccupation(target.value)}
+                  onChange={(target: any) => setOccupation(target.value)}
                 />
               </div>
+              {!occupation && isRequired && (
+                <div className="w-full text-red-500 px-2 py-0.5">
+                  Input your Occupation status
+                </div>
+              )}
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">Purpose of Loan *</p>
+              <p className="text-[18px] mb-3">Purpose of Loan *</p>
               <div className="rounded-lg border border-gray-300">
                 <Select
                   options={Purposelist}
                   styles={customStyle}
-                  onChange={(target) => setPurpose(target.value)}
+                  onChange={(target: any) => setPurpose(target.value)}
                 />
               </div>
+              {!purpose && isRequired && (
+                <div className="w-full text-red-500 px-2 py-0.5">
+                  Input your Purpose
+                </div>
+              )}
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">Marital Status *</p>
+              <p className="text-[18px] mb-3">Marital Status *</p>
               <div className="rounded-lg border border-gray-300">
                 <Select
                   options={Maritallist}
                   styles={customStyle}
-                  onChange={(target) => setMarital(target.value)}
+                  onChange={(target: any) => setMarital(target.value)}
                 />
               </div>
+              {!marital && isRequired && (
+                <div className="w-full text-red-500 px-2 py-0.5">
+                  Input your Marital Status
+                </div>
+              )}
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">
+              <p className="text-[18px] mb-3">
                 Number of Dependents *
               </p>
               <div className="rounded-lg border border-gray-300">
                 <Select
                   options={Dependentslist}
                   styles={customStyle}
-                  onChange={(target) => setDependents(target.value)}
+                  onChange={(target: any) => setDependents(target.value)}
                 />
               </div>
+              {!dependents && isRequired && (
+                <div className="w-full text-red-500 px-2 py-0.5">
+                  Input your Number of Dependents
+                </div>
+              )}
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">
+              <p className="text-[18px] mb-3">
                 Your individual share of mortgage/rent payment (£) *
               </p>
               <p className="text-[16px] text-gray-600">
@@ -441,7 +483,7 @@ const PersonalLoanCheck = (props: any) => {
                 className="rounded-lg block p-2 w-full px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 placeholder="0"
               ></input>
-              {!mortgagepayment && (
+              {!mortgagepayment && isRequired && (
                 <div className="w-full text-red-500 px-2 py-0.5">
                   Input Gross Annual income
                 </div>
@@ -449,7 +491,7 @@ const PersonalLoanCheck = (props: any) => {
             </div>
 
             <div>
-              <p className="font-bold text-[24px] mb-3">
+              <p className="text-[18px] mb-3">
                 Gross annual income (£) *
               </p>
               <p className="text-[16px] text-gray-600">
@@ -464,7 +506,7 @@ const PersonalLoanCheck = (props: any) => {
                 className="rounded-lg block p-2 w-full px-3 text-sm text-gray-900 bg-gray-50 border border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 placeholder="0"
               ></input>
-              {!GAIC && (
+              {!GAIC && isRequired && (
                 <div className="w-full text-red-500 px-2 py-0.5">
                   Input Gross Annual income
                 </div>

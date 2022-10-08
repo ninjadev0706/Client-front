@@ -61,8 +61,7 @@ const Sandbox = () => {
     //       "Access-Control-Allow-Origin": "*",
     //       "Content-Type": "application/json",
     //     },
-    //   })
-    //     .then((response) => {
+    //   }).then((response) => {
     //       alert(
     //         "You have submitted your request, once we have completed our checks we will approve your loan",
     //       );

@@ -24,8 +24,8 @@ import { Link } from "react-router-dom";
 // };
 
 const Index = () => {
+  const [amount, setAmountReg] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [amount, setAmountReg] = useState("0");
   const [usermail, setUsermailReg] = useState("");
   const [toggle, setToggle] = useState(false);
   const ref = useRef();
@@ -55,6 +55,7 @@ const Index = () => {
 
   const setFinaldata = () => {
     const emailValidation = Validatemailtype();
+    localStorage.setItem("loan_amount", String(amount));
     console.log(emailValidation);
     if (emailValidation && amount) {
       setShowModal(false);
