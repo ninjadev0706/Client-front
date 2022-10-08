@@ -90,7 +90,7 @@ const Index = () => {
   };
   useOnClickOutside(ref, () => alldisable());
   return (
-    <div className="lg:px-20 px-4 xl:px-60">
+    <div className="lg:px-20 px-4 xl:px-60 text-center md:text-left">
       <nav className="relative flex items-center text-[#737373] font-medium py-4">
         <a className="nav_logo flex items-center" href="/">
           {/* <navLogo /> */}
@@ -275,7 +275,7 @@ const Index = () => {
         <div className="absolute right-0 flex items-center">
           <div className="flex items-center">
             <button
-              className="xl:ml-20 lg:ml-10 px-8 py-2 mr-2 bg-[#648bcb] rounded-xl text-white"
+              className="xl:ml-20 lg:ml-10 px-8 py-2 mr-2 lg:mr-10 bg-[#648bcb] rounded-xl text-white"
               onClick={() => setShowModal(true)}
             >
               <p>Apply now</p>
@@ -441,8 +441,10 @@ const Index = () => {
             </button>
           </div>
         </div>
-        <div className="hidden lg:flex mt-10 lg:h-[400px] h-auto xl:w-5/12">
-          <img src="./Flexi_loan_Hero.webp" className="rounded-full" />
+        <div className="hidden mt-10 lg:h-[400px] h-auto xl:w-5/12 lg:block relative">
+          <div className="absolute right-0">
+            <img src="./Flexi_loan_Hero.webp" className="rounded-full" />
+          </div>
         </div>
       </div>
       {showModal ? (
